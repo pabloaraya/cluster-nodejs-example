@@ -1,0 +1,27 @@
+{
+  "name": "cluster-nodejs-example",
+  "version": "0.0.1",
+  "description": "Cluster using Nodejs",
+  "main": "app.js",
+  "dependencies": {
+    "cluster": "~0.7.7",
+    "express": "~3.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pabloaraya/cluster-nodejs-example.git"
+  },
+  "author": {
+    "name": "Pablo Araya Romero",
+    "email": "pablo.araya.romero@gmail.com",
+    "url": "http://pabloaraya.org"
+  },
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/pabloaraya/cluster-nodejs-example/issues"
+  }
+}
