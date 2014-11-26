@@ -43,13 +43,20 @@ if(cluster.isMaster){
   });
 }else{
 	var express = require('express');
-  var app = express();
+  var app = express(),
+  http = require('http'),
+  server = http.createServer(app);
+
+  app.configure(function(){
+    app.set('port', process.env.PORT || 80);
+  });
 
   /* Route to root of our application */
   app.get('/', function (req, res) {
-		res.send(factor(Math.floor(Math.random()*10000000)));
+		res.send(factor(Math.floor(Math.random()*10000)));
   });
  
-  app.listen(80);
-  console.log('Application running!');
+  server.listen(app.get('port'), function(){
+    console.log("Jaampr server listening on port " + app.get('port'));
+  });
 }
