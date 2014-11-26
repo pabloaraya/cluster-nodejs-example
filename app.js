@@ -53,7 +53,7 @@ if(cluster.isMaster){
 
   /* Route to root of our application */
   app.get('/', function (req, res) {
-		res.send(factor(Math.floor(Math.random()*10000)));
+		res.send(factor(Math.floor(Math.random()*10000000)));
   });
  
   server.listen(app.get('port'), function(){
