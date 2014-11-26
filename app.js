@@ -1,10 +1,8 @@
-
-
 /* to call the library */
 var cluster = require('cluster');
 
 /* Function to factor a number */
-function factorizar(n){
+function factor(n){
   var i = 2, res = [];
   while(i <= n){
     if(n%i && i++) continue;
@@ -24,6 +22,8 @@ if(cluster.isMaster){
   /* I count the cpu numbers the machine */
 	var cpuCount = require('os').cpus().length;
 	for(var i = 0; i < cpuCount; i++){
+
+    /* We created a folk per cpu */
 		cluster.fork();
 	}
   cluster.on('fork', function(worker){
@@ -35,6 +35,8 @@ if(cluster.isMaster){
   cluster.on('listening', function(worker, address){
     console.log('listening: '+worker.id+' '+address.address + ":" + address.port);
   });
+
+  /* When one worker died, i can wake up again */
   cluster.on('exit', function(worker){
     console.log('worker ' + worker.id + ' died!');
     cluster.fork();
@@ -43,10 +45,11 @@ if(cluster.isMaster){
 	var express = require('express');
   var app = express();
 
+  /* Route to root of our application */
   app.get('/', function (req, res) {
-		res.send(factorizar(Math.floor(Math.random()*100000000)));
+		res.send(factor(Math.floor(Math.random()*10000000)));
   });
  
-  app.listen(3000);
+  app.listen(80);
   console.log('Application running!');
 }
